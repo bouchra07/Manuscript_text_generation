@@ -1,0 +1,76 @@
+{% extends "home.html" %}
+
+{% block content %}
+<style>
+
+body {
+  background-color: #242222;
+}
+.btn1, .btn1y:hover, .btn1:active, .btn1:visited {
+    background-color: #008B8B;
+    color:white
+}
+.btn2, .btn2r:hover, .btn2r:active, .btn2:visited {
+    background-color: #242222;
+    color:white
+}
+  </style>
+{% if image is defined %}
+<br>
+<br>
+{% else %}
+
+<br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endif%}
+
+
+<div class="card text-center border border-light p-5">
+  <div class="card text-center border border-light p-5">
+  <p class="h4 mb-4">Content Based Image Retrieval</p>
+  <hr>
+
+  <form action="/search" method="POST" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label" for="customFile">Choose your Image</label>
+        <input type="file" name="image"  id="customFile" />
+      </div>
+      
+      <div class="col-md-3">
+        
+        {% if image is defined %}
+        <button type="submit" class="btn btn1">Search Image</button>
+        <button type="submit"  class="btn btn2 my-4" value="Reset">Reset</button>
+        {% else %}        
+        <button type="submit" class="btn btn1 text-center my-4"> Search Image</button>
+        {% endif%}
+
+      </div>
+      <div class="col-md-3">
+      </div>
+  
+    </div>
+  </form>
+</div>
+  {% if image is defined %}
+  <hr>
+
+  <div class="card text-center border border-light p-5">
+
+
+        <p>{{ recognized }}</p>
+        <img src="../static/uploads/{{image}}" alt="source Image" class = "img-responsive" width = "100%">
+      
+  </div>
+
+  {% endif%}
+
+
+  </div>
+{% endblock %}
