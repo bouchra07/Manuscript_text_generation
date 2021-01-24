@@ -30,7 +30,7 @@ body {
 
 <div class="card text-center border border-light p-5">
   <div class="card text-center border border-light p-5">
-  <p class="h4 mb-4">Content Based Image Retrieval</p>
+  <p class="h4 mb-4">Manuscript Text Generation</p>
   <hr>
 
   <form action="/search" method="POST" enctype="multipart/form-data">
@@ -45,10 +45,10 @@ body {
       <div class="col-md-3">
         
         {% if image is defined %}
-        <button type="submit" class="btn btn1">Search Image</button>
+        <button type="submit" class="btn btn1">Generate Text</button>
         <button type="submit"  class="btn btn2 my-4" value="Reset">Reset</button>
         {% else %}        
-        <button type="submit" class="btn btn1 text-center my-4"> Search Image</button>
+        <button type="submit" class="btn btn1 text-center my-4">Generate Text</button>
         {% endif%}
 
       </div>
@@ -63,7 +63,9 @@ body {
 
   <div class="card text-center border border-light p-5">
 
-
+    {% for word in words: %}
+    <p>{{word}}</p>
+    {% endfor %}
         <p>{{ recognized }}</p>
         <img src="../static/uploads/{{image}}" alt="source Image" class = "img-responsive" width = "100%">
       
