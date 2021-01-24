@@ -1,30 +1,19 @@
 {% extends "home.html" %}
 
 {% block content %}
-<style>
 
-body {
-  background-color: #242222;
-}
-.btn1, .btn1y:hover, .btn1:active, .btn1:visited {
-    background-color: #008B8B;
-    color:white
-}
-.btn2, .btn2r:hover, .btn2r:active, .btn2:visited {
-    background-color: #242222;
-    color:white
-}
-  </style>
 {% if image is defined %}
-<br>
-<br>
-{% else %}
 
 <br>
+<br>
+
+{% else %}
     <br>
     <br>
     <br>
     <br>
+    <br>
+
 {% endif%}
 
 
@@ -60,15 +49,23 @@ body {
 </div>
   {% if image is defined %}
   <hr>
-
   <div class="card text-center border border-light p-5">
-
-    {% for word in words: %}
-    <p>{{word}}</p>
-    {% endfor %}
-        <p>{{ recognized }}</p>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Chosen Image</h3>
         <img src="../static/uploads/{{image}}" alt="source Image" class = "img-responsive" width = "100%">
-      
+      </div>
+      <div class="col-md-6">
+        <h3>Generated Text</h3>
+        <p>
+          {% for word in words: %}
+          {{word}}  
+          {% endfor %}
+          </p>
+      </div>
+    </div>
+    
+    
   </div>
 
   {% endif%}

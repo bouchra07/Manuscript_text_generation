@@ -1,0 +1,18 @@
+body {
+    background-color: #242222;
+  }
+  .btn1, .btn1y:hover, .btn1:active, .btn1:visited {
+      background-color: #008B8B;
+      color:white
+  }
+  .btn2, .btn2r:hover, .btn2r:active, .btn2:visited {
+      background-color: #242222;
+      color:white
+  }
+
+  #footer {
+    position: fixed;
+      bottom: 0;
+      width: 100%;
+             /* Footer height */
+  }

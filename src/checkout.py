@@ -1,10 +1,3 @@
-"""
-For Testing purposes
-    Take image from user, crop the background and transform perspective
-    from the perspective detect the word and return the array of word's
-    bounding boxes
-"""
-
 import page
 import words
 from PIL import Image
