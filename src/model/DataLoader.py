@@ -7,7 +7,7 @@ import random
 import cv2
 import numpy as np
 
-from SamplePreprocessor import preprocess
+from model.SamplePreprocessor import preprocess
 
 
 class Sample:

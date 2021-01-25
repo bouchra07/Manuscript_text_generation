@@ -7,12 +7,13 @@ import cv2
 import editdistance
 import os
 
-from DataLoader import DataLoader, Batch
-from Model import Model, DecoderType
-from SamplePreprocessor import preprocess
+from model.DataLoader import DataLoader, Batch
+from model.Model import Model, DecoderType
+from model.SamplePreprocessor import preprocess
+
 import secrets
-import page
-import words
+from segmentation import page
+from segmentation import words
 from PIL import Image
 import cv2
 
@@ -21,7 +22,7 @@ app.secret_key = "super secret key"
 
 fnCharList = '../model/charList.txt'
 fnAccuracy = '../model/accuracy.txt'
-fnInfer = './segmented/segment'
+fnInfer = './static/segmented/segment'
 
 app.config["UPLOAD_DIRECTORY"] = "static\\uploads"
 
@@ -54,33 +55,30 @@ def search():
             image.save(os.path.join(app.config["UPLOAD_DIRECTORY"], image.filename))
             print(image.filename)
 
-            image2 = cv2.cvtColor(cv2.imread("./static/uploads/"+image.filename), cv2.COLOR_BGR2RGB)
+            image2 =cv2.imread("./static/uploads/"+image.filename)
             crop = page.detection(image2)
             boxes = words.detection(crop)
             lines = words.sort_words(boxes)
-
+            
             # Saving the bounded words from the page image in sorted way
             i = 0
-            
-
-            open(fnAccuracy).read()
-            model = Model(open(fnCharList).read(), decoderType, mustRestore=True, dump=args.dump)
-            
             for line in lines:
                 text = crop.copy()
                 for (x1, y1, x2, y2) in line:
                     # roi = text[y1:y2, x1:x2]
                     save = Image.fromarray(text[y1:y2, x1:x2])
                     # print(i)
-                    save.save("segmented/segment" + str(i) + ".png")
+                    save.save("./static/segmented/segment" + str(i) + ".png")
                     i += 1
 
-            path, dirs, files = next(os.walk("./segmented"))
+            path, dirs, files = next(os.walk("./static/segmented"))
             file_count = len(files)
 
+            print(open(fnAccuracy).read())
+            model = Model(open(fnCharList).read(), decoderType, mustRestore=True, dump=args.dump)
             recognized = []
             for i in range(file_count):
-                recognized.append(infer(model,"./segmented/segment" + str(i) + ".png"))
+                recognized.append(infer(model,"./static/segmented/segment" + str(i) + ".png"))
 
 
             # print(open(fnAccuracy).read())

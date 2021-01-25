@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Helper functions for ocr project
-"""
+
 import numpy as np
 import cv2
 

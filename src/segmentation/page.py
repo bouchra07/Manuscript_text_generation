@@ -5,7 +5,7 @@ Crop background and transform perspective from the photo of page
 import numpy as np
 import cv2
 
-from utils import *
+from segmentation.utils import *
 
 def detection(image):
     """Finding Page."""

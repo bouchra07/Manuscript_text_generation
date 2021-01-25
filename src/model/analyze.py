@@ -10,9 +10,9 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-from DataLoader import Batch
-from Model import Model, DecoderType
-from SamplePreprocessor import preprocess
+from model.DataLoader import Batch
+from mode.Model import Model, DecoderType
+from model.SamplePreprocessor import preprocess
 
 
 # constants like filepaths
