@@ -22,7 +22,6 @@ app.secret_key = "super secret key"
 
 fnCharList = '../model/charList.txt'
 fnAccuracy = '../model/accuracy.txt'
-fnInfer = './static/segmented/segment'
 
 app.config["UPLOAD_DIRECTORY"] = "static\\uploads"
 
