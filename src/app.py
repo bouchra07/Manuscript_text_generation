@@ -31,7 +31,7 @@ def infer(model, fnImg):
     (recognized, probability) = model.inferBatch(batch, True)
     print('Recognized:', '"' + recognized[0] + '"')
     print('Probability:', probability[0])
-    return recognized[0]
+    return recognized[0],probability[0]
 
 @app.route('/')
 def index():
@@ -75,16 +75,20 @@ def search():
 
             print(open(fnAccuracy).read())
             model = Model(open(fnCharList).read(), decoderType, mustRestore=True, dump=args.dump)
-            recognized = []
+            wordss = []
+            probabilites = []
             for i in range(file_count):
-                recognized.append(infer(model,"./static/segmented/segment" + str(i) + ".png"))
+                word,probability = infer(model,"./static/segmented/segment" + str(i) + ".png")
+                wordss.append(word)
+                probabilites.append(probability)
+            results = zip(wordss, probabilites)
 
 
             # print(open(fnAccuracy).read())
             # model = Model(open(fnCharList).read(), decoderType, mustRestore=True, dump=args.dump)
             # recognized = infer(model, fnInfer)
 
-            return render_template("index.html",image=image.filename, words=recognized)
+            return render_template("index.html",image=image.filename,results=results,words=wordss)
         else:
             return render_template('index.html')
 
