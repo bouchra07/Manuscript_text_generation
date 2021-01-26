@@ -93,9 +93,7 @@ class DataLoader:
         self.charList = sorted(list(chars))
 
     def truncateLabel(self, text, maxTextLen):
-        # ctc_loss can't compute loss if it cannot find a mapping between text label and input
-        # labels. Repeat letters cost double because of the blank symbol needing to be inserted.
-        # If a too-long label is provided, ctc_loss returns an infinite gradient
+
         cost = 0
         for i in range(len(text)):
             if i != 0 and text[i] == text[i - 1]:

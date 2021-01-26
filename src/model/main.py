@@ -8,16 +8,16 @@ import editdistance
 
 from model.DataLoader import DataLoader, Batch
 from model.Model import Model, DecoderType
-from modelSamplePreprocessor import preprocess
+from model.SamplePreprocessor import preprocess
 
 
 class FilePaths:
     "filenames and paths to data"
-    fnCharList = '../model/charList.txt'
-    fnAccuracy = '../model/accuracy.txt'
-    fnTrain = '../data/'
-    fnInfer = '../data/test.png'
-    fnCorpus = '../data/corpus.txt'
+    fnCharList = '../../model/charList.txt'
+    fnAccuracy = '../../model/accuracy.txt'
+    fnTrain = '../../data/'
+    fnInfer = '../../data/test.png'
+    fnCorpus = '../../data/corpus.txt'
 
 
 def train(model, loader):
@@ -133,7 +133,7 @@ def main():
 
     # infer text on test image
     else:
-        print(open(FilePaths.fnAccuracy).read())
+        open(FilePaths.fnAccuracy).read()
         model = Model(open(FilePaths.fnCharList).read(), decoderType, mustRestore=True, dump=args.dump)
         infer(model, FilePaths.fnInfer)
 
