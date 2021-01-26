@@ -21,3 +21,7 @@ Manuscript text generation using Python 3, Flask, Tensorflow 2, OpenCV
 cd ./src
 
 python app.py
+
+![](screenshots/Capture1.PNG)
+![](screenshots/Capture3.png)
+![](screenshots/Capture2.png)
